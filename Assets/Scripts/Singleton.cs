@@ -18,14 +18,4 @@ public class Singleton : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }
