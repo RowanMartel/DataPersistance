@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] StatsCanvas statsCanvas;
+    [SerializeField] Animation saveAnimation;
 
     private float Health;
     public float health
@@ -108,6 +109,8 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
+        saveAnimation.Play();
+
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 

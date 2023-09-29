@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BehaviourToggle : MonoBehaviour
 {
-    [SerializeField] Behaviour behaviourToToggle;
     [SerializeField] bool onTitle;
     [SerializeField] bool onLvl1;
     [SerializeField] bool onLvl2;
     [SerializeField] bool onLvl3;
+    GameObject container;
 
     private void Start()
     {
+        container = transform.GetChild(0).gameObject;
         FindObjectOfType<GameManager>().SceneChanged += OnSceneChanged;
     }
 
@@ -20,16 +21,20 @@ public class BehaviourToggle : MonoBehaviour
         switch (e.currentScene)
         {
             case GameManager.Scenes.titleScreen:
-                behaviourToToggle.enabled = onTitle;
+                if (onTitle) container.SetActive(true);
+                else container.SetActive(false);
                 break;
             case GameManager.Scenes.level1:
-                behaviourToToggle.enabled = onLvl1;
+                if (onLvl1) container.SetActive(true);
+                else container.SetActive(false);
                 break;
             case GameManager.Scenes.level2:
-                behaviourToToggle.enabled = onLvl2;
+                if (onLvl2) container.SetActive(true);
+                else container.SetActive(false);
                 break;
             case GameManager.Scenes.level3:
-                behaviourToToggle.enabled = onLvl3;
+                if (onLvl3) container.SetActive(true);
+                else container.SetActive(false);
                 break;
         }
     }

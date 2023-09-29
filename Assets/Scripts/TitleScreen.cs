@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class titleScreen : MonoBehaviour
+public class TitleScreen : MonoBehaviour
 {
-    void Start()
+    [SerializeField] GameManager gameManager;
+
+    public void NewGame()
     {
-        
+        gameManager.LoadScene(GameManager.Scenes.level1);
     }
-
-    public void Newgame()
+    public void LoadGame()
     {
-
+        gameManager.Load();
     }
 }
