@@ -9,41 +9,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] StatsCanvas statsCanvas;
-    [SerializeField] Animation saveAnimation;
-
-    private float Health;
-    public float health
-    {
-        get{ return Health; }
-        set
-        {
-            if (value < 0) value = 0;
-            statsCanvas.UpdateHealth(value);
-            Health = value;
-        }
-    }
-    private float Score;
-    public float score
-    {
-        get { return Score; }
-        set
-        {
-            value = Math.Clamp(value, 0, Constants.maxHealth);
-            statsCanvas.UpdateScore(value);
-            Score = value;
-        }
-    }
-    private float Experience;
-    public float experience
-    {
-        get { return Experience; }
-        set
-        {
-            if (value < 0) value = 0;
-            statsCanvas.UpdateXP(value);
-            Experience = value;
-        }
-    }
+    [SerializeField] public Animation saveAnimation;
+    [SerializeField] Player player;
 
     public event EventHandler<SceneChangedEventArgs> SceneChanged;
 
@@ -64,6 +31,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(Scenes newScene)
     {
+        if (GetScene() != Scenes.titleScreen)
+            Save();
+
+
         switch (newScene)
         {
             case Scenes.titleScreen:
@@ -79,10 +50,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadSceneAsync(3);
                 break;
         }
-        OnSceneChanged();
     }
 
-    public void GetScene()
+    public Scenes GetScene()
     {
         switch (SceneManager.GetActiveScene().buildIndex)
         {
@@ -99,6 +69,7 @@ public class GameManager : MonoBehaviour
                 currentScene = Scenes.level3;
                 break;
         }
+        return currentScene;
     }
 
     public void OnSceneChanged()
@@ -114,7 +85,7 @@ public class GameManager : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
-        PlayerData data = new PlayerData(health, score, currentScene);
+        PlayerData data = new PlayerData(player.health, player.score, player.experience, currentScene);
 
         bf.Serialize(file, data);
         file.Close();
@@ -129,8 +100,9 @@ public class GameManager : MonoBehaviour
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
 
-            health = data.health;
-            score = data.score;
+            player.health = data.health;
+            player.score = data.score;
+            player.experience = data.experience;
             LoadScene(data.currentScene);
         }
     }
@@ -141,12 +113,14 @@ class PlayerData
 {
     public float health;
     public float score;
+    public float experience;
     public GameManager.Scenes currentScene;
 
-    public PlayerData(float health, float score, GameManager.Scenes currentScene)
+    public PlayerData(float health, float score, float experience, GameManager.Scenes currentScene)
     {
         this.health = health;
         this.score = score;
+        this.experience = experience;
         this.currentScene = currentScene;
     }
 }

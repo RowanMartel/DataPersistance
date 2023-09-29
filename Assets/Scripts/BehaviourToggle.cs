@@ -18,24 +18,22 @@ public class BehaviourToggle : MonoBehaviour
 
     public void OnSceneChanged(object source, SceneChangedEventArgs e)
     {
+        bool toggle = false;
         switch (e.currentScene)
         {
             case GameManager.Scenes.titleScreen:
-                if (onTitle) container.SetActive(true);
-                else container.SetActive(false);
+                if (onTitle) toggle = true;
                 break;
             case GameManager.Scenes.level1:
-                if (onLvl1) container.SetActive(true);
-                else container.SetActive(false);
+                if (onLvl1) toggle = true;
                 break;
             case GameManager.Scenes.level2:
-                if (onLvl2) container.SetActive(true);
-                else container.SetActive(false);
+                if (onLvl2) toggle = true;
                 break;
             case GameManager.Scenes.level3:
-                if (onLvl3) container.SetActive(true);
-                else container.SetActive(false);
+                if (onLvl3) toggle = true;
                 break;
         }
+        container.SetActive(toggle);
     }
 }

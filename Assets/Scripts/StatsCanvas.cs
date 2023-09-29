@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class StatsCanvas : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
+    [SerializeField] Player player;
     [SerializeField] private TMP_Text health_Text;
     [SerializeField] private TMP_Text score_Text;
     [SerializeField] private TMP_Text xp_Text;
+
+    private void Start()
+    {
+        UpdateHealth(player.health);
+        UpdateScore(player.score);
+        UpdateXP(player.experience);
+    }
 
     public void UpdateHealth(float health)
     {
