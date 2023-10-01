@@ -10,6 +10,9 @@ public class StatsCanvas : MonoBehaviour
     [SerializeField] private TMP_Text health_Text;
     [SerializeField] private TMP_Text score_Text;
     [SerializeField] private TMP_Text xp_Text;
+    [SerializeField] private TMP_Text silliness_Text;
+    [SerializeField] private TMP_Text level_Text;
+    [SerializeField] private TMP_Text stage_Text;
 
     private void Start()
     {
@@ -20,17 +23,26 @@ public class StatsCanvas : MonoBehaviour
 
     public void UpdateHealth(float health)
     {
-        if (health >= 0)
-            health_Text.text = "Health: " + health.ToString();
+        health_Text.text = "Health: " + health.ToString();
     }
     public void UpdateScore(float score)
     {
-        if (score >= 0)
-            score_Text.text = "Score: " + score.ToString();
+        score_Text.text = "Score: " + score.ToString();
     }
     public void UpdateXP(float xp)
     {
-        if (xp >= 0)
-            xp_Text.text = "XP: " + xp.ToString();
+        xp_Text.text = "XP: " + xp.ToString();
+    }
+    public void UpdateSilliness(float silliness)
+    {
+        silliness_Text.text = "Silliness: " + silliness.ToString();
+    }
+    public void UpdateLevel(float level)
+    {
+        level_Text.text = "Level: " + level.ToString();
+    }
+    public void UpdateStage(float stage)
+    {
+        stage_Text.text = "Stage: " + level_Text.ToString();
     }
 }

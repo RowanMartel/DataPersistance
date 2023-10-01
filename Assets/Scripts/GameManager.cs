@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
-        PlayerData data = new PlayerData(player.health, player.score, player.experience, currentScene);
+        PlayerData data = new PlayerData(player.health, player.score, player.experience, player.silliness, player.level, player.stage, currentScene);
 
         bf.Serialize(file, data);
         file.Close();
@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour
             player.health = data.health;
             player.score = data.score;
             player.experience = data.experience;
+            player.silliness = data.silliness;
+            player.level = data.level;
+            player.stage = data.stage;
             LoadScene(data.currentScene);
         }
     }
@@ -114,13 +117,19 @@ class PlayerData
     public float health;
     public float score;
     public float experience;
+    public float silliness;
+    public float level;
+    public float stage;
     public GameManager.Scenes currentScene;
 
-    public PlayerData(float health, float score, float experience, GameManager.Scenes currentScene)
+    public PlayerData(float health, float score, float experience, float silliness, float level, float stage, GameManager.Scenes currentScene)
     {
         this.health = health;
         this.score = score;
         this.experience = experience;
+        this.silliness = silliness;
+        this.level = level;
+        this.stage = stage;
         this.currentScene = currentScene;
     }
 }
