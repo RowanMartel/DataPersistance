@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
             player.silliness = data.silliness;
             player.level = data.level;
             player.stage = data.stage;
+            currentScene = data.currentScene;
             LoadScene(data.currentScene);
         }
     }
