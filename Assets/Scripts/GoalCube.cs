@@ -9,7 +9,7 @@ public class GoalCube : MonoBehaviour
 
     void Start()
     {
-        FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)

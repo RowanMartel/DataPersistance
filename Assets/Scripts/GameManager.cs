@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(Scenes newScene)
     {
-        if (GetScene() != Scenes.titleScreen)
+        if (newScene != Scenes.titleScreen)
             Save();
 
 
@@ -76,6 +76,12 @@ public class GameManager : MonoBehaviour
     {
         if (SceneChanged != null)
             SceneChanged(this, new SceneChangedEventArgs(currentScene));
+    }
+
+    public void NewGame()
+    {
+        player.ResetStats();
+        LoadScene(Scenes.level1);
     }
 
     public void Save()

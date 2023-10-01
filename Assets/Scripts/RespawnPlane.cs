@@ -15,7 +15,6 @@ public class RespawnPlane : MonoBehaviour
             other.transform.parent.GetChild(2).position = respawnPos;
             other.GetComponent<CharacterController>().enabled = true;
             other.transform.parent.GetChild(2).eulerAngles = respawnDir;
-            Debug.Log("aheehee");
         }
     }
 }
