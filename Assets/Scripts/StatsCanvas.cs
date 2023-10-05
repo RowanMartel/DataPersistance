@@ -43,6 +43,6 @@ public class StatsCanvas : MonoBehaviour
     }
     public void UpdateStage(float stage)
     {
-        stage_Text.text = "Stage: " + level_Text.ToString();
+        stage_Text.text = "Stage: " + stage.ToString();
     }
 }

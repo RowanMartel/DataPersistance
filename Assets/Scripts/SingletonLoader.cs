@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GameManager;
 
 public class SingletonLoader : MonoBehaviour
 {
@@ -17,5 +18,7 @@ public class SingletonLoader : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         gameManager.GetScene();
         gameManager.OnSceneChanged();
+        if (gameManager.GetScene() != Scenes.titleScreen)
+            gameManager.Save();
     }
 }

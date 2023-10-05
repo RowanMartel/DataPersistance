@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
         get { return Health; }
         set
         {
+            if (value >= Constants.maxHealth)
+                value = Constants.maxHealth;
             if (value < 0) value = 0;
             statsCanvas.UpdateHealth(value);
             Health = value;

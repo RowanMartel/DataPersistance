@@ -31,22 +31,22 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(Scenes newScene)
     {
-        if (newScene != Scenes.titleScreen)
-            Save();
-
-
         switch (newScene)
         {
             case Scenes.titleScreen:
+                player.stage = 0;
                 SceneManager.LoadSceneAsync(0);
                 break;
             case Scenes.level1:
+                player.stage = 1;
                 SceneManager.LoadSceneAsync(1);
                 break;
             case Scenes.level2:
+                player.stage = 2;
                 SceneManager.LoadSceneAsync(2);
                 break;
             case Scenes.level3:
+                player.stage = 3;
                 SceneManager.LoadSceneAsync(3);
                 break;
         }
@@ -92,7 +92,6 @@ public class GameManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
 
         PlayerData data = new PlayerData(player.health, player.score, player.experience, player.silliness, player.level, player.stage, currentScene);
-
         bf.Serialize(file, data);
         file.Close();
     }
