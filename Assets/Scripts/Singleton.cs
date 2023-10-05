@@ -8,6 +8,8 @@ public class Singleton : MonoBehaviour
 
     private void Awake()
     {
+        GameManagerCounter.gameManagerCount++;
+
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -15,6 +17,7 @@ public class Singleton : MonoBehaviour
         }
         else if (Instance != this)
         {
+            GameManagerCounter.gameManagerCount--;
             Destroy(gameObject);
         }
     }

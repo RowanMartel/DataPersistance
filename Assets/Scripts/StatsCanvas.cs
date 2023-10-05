@@ -13,6 +13,7 @@ public class StatsCanvas : MonoBehaviour
     [SerializeField] private TMP_Text silliness_Text;
     [SerializeField] private TMP_Text level_Text;
     [SerializeField] private TMP_Text stage_Text;
+    [SerializeField] private TMP_Text gameManager_Text;
 
     private void Start()
     {
@@ -44,5 +45,10 @@ public class StatsCanvas : MonoBehaviour
     public void UpdateStage(float stage)
     {
         stage_Text.text = "Stage: " + stage.ToString();
+    }
+
+    public void UpdateGMCount(float count)
+    {
+        gameManager_Text.text = "Game Managers: " + count.ToString();
     }
 }
